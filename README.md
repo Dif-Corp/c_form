@@ -1,6 +1,7 @@
 # c_form
 
 A new Flutter plugin CForm.
+Inspired by [GSForm](https://github.com/ritagroup/gsform)
 
 ## Getting Started
 
