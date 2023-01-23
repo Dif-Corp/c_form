@@ -1,0 +1,20 @@
+enum CFormFieldTypeEnum {
+  mobile,
+  email,
+  password,
+  text,
+  textPlain,
+  spinner,
+  date,
+  dateRage,
+  time,
+  price,
+  number,
+  checkList,
+  radioGroup,
+  pinCode,
+  masked,
+  bankCard,
+  imagePicker,
+  qrScanner
+}

@@ -1,7 +1,8 @@
 name: c_form
 description: A new Flutter plugin CForm.
 version: 0.0.1
-homepage:
+author: Tchakoli Chissou DIFEZI
+homepage: https://github.com/Dif-Corp/c_form.git
 
 environment:
   sdk: '>=2.18.6 <3.0.0'
@@ -13,6 +14,17 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
+  get: ^4.6.5
+  figma_squircle: ^0.5.3
+  persian_datetime_picker: ^2.5.0
+  intl: ^0.17.0
+  qr_code_scanner: ^1.0.1
+  image_cropper: ^3.0.0
+  # image_picker: ^0.8.5+3
+  wechat_assets_picker: ^8.3.1+1
+  wechat_camera_picker: ^3.7.0
+  flutter_svg: ^1.1.0
+  path_provider: ^2.0.11
 
 dev_dependencies:
   flutter_test:

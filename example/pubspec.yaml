@@ -17,6 +17,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  lottie: ^1.4.2
+
+  flutter_svg: ^1.1.0
 
   c_form:
     # When depending on this package from a real application you should use:
