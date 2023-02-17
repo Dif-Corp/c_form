@@ -8,6 +8,7 @@ import 'package:c_form/c_form/enums/tmage_source.dart';
 import 'package:c_form/c_form/models/c_form_image_picker_model.dart';
 import 'package:c_form/c_form/models/c_form_multi_image_picker_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_cropper/image_cropper.dart';
 
 // ignore: must_be_immutable
@@ -77,7 +78,13 @@ class _CFormMultiImagePickerFieldState
                     },
                   )
                 : ImageBox(
-                    imagePath: widget._croppedFilePaths?[index - 1] ?? '');
+                    imagePath: widget._croppedFilePaths?[index - 1] ?? '',
+                    onDelete: (value) {
+                      widget._croppedFilePaths
+                          ?.removeWhere((element) => element == value);
+                      setState(() {});
+                    },
+                  );
           }),
     );
   }
@@ -171,8 +178,8 @@ class SelectItem extends StatelessWidget {
     if (model.showCropper ?? false) {
       _cropImage(image);
     } else {
-      if (model.maximumSizePerImageInBytes != null) {
-        if (image.lengthSync() > model.maximumSizePerImageInBytes!) {
+      if (model.maximumSizePerImageInKB != null) {
+        if (image.lengthSync() / 1000 < model.maximumSizePerImageInKB!) {
           callBack.call(image.path);
         } else {
           model.onErrorSizeItem?.call();
@@ -201,8 +208,8 @@ class SelectItem extends StatelessWidget {
       ],
     );
     if (croppedFile != null) {
-      if (model.maximumSizePerImageInBytes != null) {
-        if (image.lengthSync() > model.maximumSizePerImageInBytes!) {
+      if (model.maximumSizePerImageInKB != null) {
+        if (image.lengthSync() / 1000 < model.maximumSizePerImageInKB!) {
           model.onErrorSizeItem?.call();
         } else {
           callBack.call(image.path);
@@ -215,29 +222,62 @@ class SelectItem extends StatelessWidget {
 }
 
 class ImageBox extends StatelessWidget {
-  const ImageBox({Key? key, required this.imagePath}) : super(key: key);
+  const ImageBox({
+    Key? key,
+    required this.imagePath,
+    required this.onDelete,
+  }) : super(key: key);
   final String imagePath;
+  final ValueChanged<String> onDelete;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 90,
-      height: 90,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.0)),
-      clipBehavior: Clip.hardEdge,
-      child: imagePath.contains('http')
-          ? Image.network(
-              imagePath,
-              width: 90,
-              height: 90,
-              fit: BoxFit.fill,
-            )
-          : Image.file(
-              File(imagePath),
-              width: 90,
-              height: 90,
-              fit: BoxFit.fill,
+    return SizedBox(
+      width: 100,
+      height: 100,
+      child: Stack(fit: StackFit.expand, children: [
+        Container(
+          width: 90,
+          height: 90,
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.0)),
+          clipBehavior: Clip.hardEdge,
+          child: imagePath.contains('http')
+              ? Image.network(
+                  imagePath,
+                  width: 90,
+                  height: 90,
+                  fit: BoxFit.fill,
+                )
+              : Image.file(
+                  File(imagePath),
+                  width: 90,
+                  height: 90,
+                  fit: BoxFit.fill,
+                ),
+        ),
+        Positioned(
+          bottom: 8.0,
+          left: 8.0,
+          child: InkWell(
+            onTap: () {
+              onDelete.call(imagePath);
+            },
+            child: Container(
+              padding: const EdgeInsets.all(4.0),
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(4.0),
+              ),
+              child: SvgPicture.asset(
+                'packages/c_form/assets/ic_trash.svg',
+                height: 15,
+                width: 15,
+                color: Colors.white,
+              ),
             ),
+          ),
+        ),
+      ]),
     );
   }
 }
