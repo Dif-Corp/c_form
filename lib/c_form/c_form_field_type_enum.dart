@@ -16,5 +16,6 @@ enum CFormFieldTypeEnum {
   masked,
   bankCard,
   imagePicker,
-  qrScanner
+  qrScanner,
+  multiImagePicker,
 }

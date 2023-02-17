@@ -1,3 +1,5 @@
+import 'package:c_form/c_form/fields/c_form_multi_image_picker_field.dart';
+import 'package:c_form/c_form/models/c_form_multi_image_picker_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:c_form/c_form/c_form_colors.dart';
@@ -128,6 +130,55 @@ class CFormField extends StatefulWidget {
         hint: hint,
         iconWidget: iconWidget,
         defaultValue: defaultImagePathValue);
+  }
+
+  CFormField.multiImagePicker({
+    Key? key,
+    required String tag,
+    required Widget iconWidget,
+    List<String>? defaultImagePathValues,
+    String? title,
+    String? errorMessage,
+    String? helpMessage,
+    bool? required,
+    bool? showTitle,
+    CFormFieldStatusEnum? status,
+    int? weight,
+    String? hint,
+    String? cameraPopupTitle,
+    String? galleryPopupTitle,
+    String? cameraPopupIcon,
+    String? galleryPopupIcon,
+    CFormImageSource? imageSource,
+    Color? iconColor,
+    bool? showCropper,
+    double? maximumSizePerImageInBytes,
+    double? maximumImageCount,
+    VoidCallback? onErrorSizeItem,
+  }) : super(key: key) {
+    model = CFormMultiImagePickerModel(
+      type: CFormFieldTypeEnum.multiImagePicker,
+      tag: tag,
+      showCropper: showCropper ?? true,
+      imageSource: imageSource ?? CFormImageSource.both,
+      showTitle: showTitle ?? false,
+      title: title,
+      cameraPopupTitle: cameraPopupTitle,
+      galleryPopupTitle: galleryPopupTitle,
+      cameraPopupIcon: cameraPopupIcon,
+      galleryPopupIcon: galleryPopupIcon,
+      errorMessage: errorMessage,
+      helpMessage: helpMessage,
+      required: required,
+      status: status,
+      weight: weight,
+      hint: hint,
+      iconWidget: iconWidget,
+      defaultImagePath: defaultImagePathValues,
+      maximumImageCount: maximumImageCount,
+      maximumSizePerImageInBytes: maximumSizePerImageInBytes,
+      onErrorSizeItem: onErrorSizeItem,
+    );
   }
 
   CFormField.spinner({
@@ -909,6 +960,10 @@ class _CFormFieldState extends State<CFormField> {
       case CFormFieldTypeEnum.qrScanner:
         widget.child = CFormQRScannerField(
             widget.model as CFormQRScannerModel, widget.formStyle!);
+        break;
+      case CFormFieldTypeEnum.multiImagePicker:
+        widget.child = CFormMultiImagePickerField(
+            widget.model as CFormMultiImagePickerModel, widget.formStyle!);
         break;
 
       default:

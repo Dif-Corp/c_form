@@ -1,7 +1,8 @@
 name: c_form
 description: A new Flutter plugin CForm.
 version: 1.0.0
-author: Tchakoli Chissou DIFEZI
+authors: 
+  - Tchakoli Chissou DIFEZI
 homepage: https://github.com/Dif-Corp/c_form.git
 
 environment:
@@ -64,9 +65,8 @@ flutter:
         fileName: c_form_web.dart
 
   # To add assets to your plugin package, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/icons/
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages
