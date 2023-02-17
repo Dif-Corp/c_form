@@ -110,26 +110,31 @@ class CFormField extends StatefulWidget {
     CFormImageSource? imageSource,
     Color? iconColor,
     bool? showCropper,
+    double? maximumSizePerImageInBytes,
+    VoidCallback? onErrorSizeItem,
   }) : super(key: key) {
     model = CFormImagePickerModel(
-        type: CFormFieldTypeEnum.imagePicker,
-        tag: tag,
-        showCropper: showCropper ?? true,
-        imageSource: imageSource ?? CFormImageSource.both,
-        showTitle: showTitle ?? false,
-        title: title,
-        cameraPopupTitle: cameraPopupTitle,
-        galleryPopupTitle: galleryPopupTitle,
-        cameraPopupIcon: cameraPopupIcon,
-        galleryPopupIcon: galleryPopupIcon,
-        errorMessage: errorMessage,
-        helpMessage: helpMessage,
-        required: required,
-        status: status,
-        weight: weight,
-        hint: hint,
-        iconWidget: iconWidget,
-        defaultValue: defaultImagePathValue);
+      type: CFormFieldTypeEnum.imagePicker,
+      tag: tag,
+      showCropper: showCropper ?? true,
+      imageSource: imageSource ?? CFormImageSource.both,
+      showTitle: showTitle ?? false,
+      title: title,
+      cameraPopupTitle: cameraPopupTitle,
+      galleryPopupTitle: galleryPopupTitle,
+      cameraPopupIcon: cameraPopupIcon,
+      galleryPopupIcon: galleryPopupIcon,
+      errorMessage: errorMessage,
+      helpMessage: helpMessage,
+      required: required,
+      status: status,
+      weight: weight,
+      hint: hint,
+      iconWidget: iconWidget,
+      defaultValue: defaultImagePathValue,
+      maximumSizePerImageInBytes: maximumSizePerImageInBytes,
+      onErrorSizeItem: onErrorSizeItem,
+    );
   }
 
   CFormField.multiImagePicker({
@@ -152,7 +157,7 @@ class CFormField extends StatefulWidget {
     CFormImageSource? imageSource,
     Color? iconColor,
     bool? showCropper,
-    double? maximumSizePerImageInBytes,
+    double? maximumSizePerImageInKB,
     double? maximumImageCount,
     VoidCallback? onErrorSizeItem,
   }) : super(key: key) {
@@ -176,7 +181,7 @@ class CFormField extends StatefulWidget {
       iconWidget: iconWidget,
       defaultImagePath: defaultImagePathValues,
       maximumImageCount: maximumImageCount,
-      maximumSizePerImageInBytes: maximumSizePerImageInBytes,
+      maximumSizePerImageInKB: maximumSizePerImageInKB,
       onErrorSizeItem: onErrorSizeItem,
     );
   }
@@ -495,6 +500,7 @@ class CFormField extends StatefulWidget {
     RegExp? validateRegEx,
     int? maxLength,
     bool? showTitle,
+    bool? showCounter,
     String? hint,
   }) : super(key: key) {
     model = CFormNumberModel(
@@ -512,6 +518,7 @@ class CFormField extends StatefulWidget {
       weight: weight,
       maxLength: maxLength,
       hint: hint,
+      showCounter: showCounter,
     );
   }
 
@@ -870,8 +877,8 @@ class _CFormFieldState extends State<CFormField> {
                         height: 8.0,
                         child: SvgPicture.asset(
                           widget.model.status == CFormFieldStatusEnum.error
-                              ? 'assets/icons/alert-svgrepo-com.svg'
-                              : 'assets/icons/sign-info-svgrepo-com.svg',
+                              ? 'packages/c_form/assets/ic_alret.svg'
+                              : 'packages/c_form/assets/ic_info.svg',
                         ),
                       ),
                       const SizedBox(width: 1.0),

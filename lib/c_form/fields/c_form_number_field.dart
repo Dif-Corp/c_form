@@ -19,6 +19,7 @@ class CFormNumberField extends StatelessWidget implements CFormFieldCallBack {
     return Padding(
       padding: const EdgeInsets.only(right: 10.0, left: 10.0),
       child: TextField(
+        textAlign: TextAlign.left,
         controller: controller,
         maxLength: model.maxLength,
         style: formStyle.fieldTextStyle,
@@ -32,7 +33,7 @@ class CFormNumberField extends StatelessWidget implements CFormFieldCallBack {
         },
         decoration: InputDecoration(
           hintText: model.hint,
-          counterText: '',
+          counterStyle: formStyle.fieldHintStyle,
           focusedBorder: InputBorder.none,
           enabledBorder: InputBorder.none,
           errorBorder: InputBorder.none,

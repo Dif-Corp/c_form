@@ -8,6 +8,7 @@ import 'package:c_form/c_form/c_form_style.dart';
 import 'package:c_form/c_form/c_form_utils.dart';
 import 'package:c_form/c_form/core/c_form_field_call_back.dart';
 import 'package:c_form/c_form/models/c_form_image_picker_model.dart';
+import 'package:image_cropper/image_cropper.dart';
 
 // ignore: must_be_immutable
 class CFormImagePickerField extends StatefulWidget
@@ -105,33 +106,50 @@ class _CFormImagePickerFieldState extends State<CFormImagePickerField> {
       _cropImage(image);
     } else {
       setState(() {});
-      widget._croppedFilePath = image.path;
+      if (widget.model.maximumSizePerImageInBytes != null) {
+        if (image.lengthSync() / 1000 <
+            widget.model.maximumSizePerImageInBytes!) {
+          widget._croppedFilePath = image.path;
+        } else {
+          widget.model.onErrorSizeItem?.call();
+        }
+      } else {
+        widget._croppedFilePath = image.path;
+      }
     }
   }
 
   Future<void> _cropImage(File image) async {
-    return;
-    //   final croppedFile = await ImageCropper().cropImage(
-    //     sourcePath: image.path,
-    //     compressFormat: ImageCompressFormat.jpg,
-    //     compressQuality: 100,
-    //     uiSettings: [
-    //       AndroidUiSettings(
-    //           toolbarTitle: 'ویرایش تصویر',
-    //           toolbarColor: CFormFormColors.white,
-    //           toolbarWidgetColor: Colors.black,
-    //           initAspectRatio: CropAspectRatioPreset.original,
-    //           lockAspectRatio: false),
-    //       IOSUiSettings(
-    //         title: 'Cropper',
-    //       ),
-    //     ],
-    //   );
-    //   if (croppedFile != null) {
-    //     setState(() {
-    //       widget._croppedFilePath = croppedFile.path;
-    //     });
-    //   }
+    final croppedFile = await ImageCropper().cropImage(
+      sourcePath: image.path,
+      compressFormat: ImageCompressFormat.jpg,
+      compressQuality: 100,
+      uiSettings: [
+        AndroidUiSettings(
+            toolbarTitle: "Édition d'images",
+            toolbarColor: CFormColors.white,
+            toolbarWidgetColor: Colors.black,
+            initAspectRatio: CropAspectRatioPreset.original,
+            lockAspectRatio: false),
+        IOSUiSettings(
+          title: 'Recadrage',
+        ),
+      ],
+    );
+    if (croppedFile != null) {
+      setState(() {
+        if (widget.model.maximumSizePerImageInBytes != null) {
+          if (image.lengthSync() / 1000 <
+              widget.model.maximumSizePerImageInBytes!) {
+            widget._croppedFilePath = image.path;
+          } else {
+            widget.model.onErrorSizeItem?.call();
+          }
+        } else {
+          widget._croppedFilePath = image.path;
+        }
+      });
+    }
   }
 }
 

@@ -10,6 +10,7 @@ import 'package:c_form/c_form/c_form_colors.dart';
 import 'package:c_form/c_form/c_form_field_status_enum.dart';
 import 'package:c_form/c_form/c_form_style.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import 'package:wechat_camera_picker/wechat_camera_picker.dart';
 
@@ -202,6 +203,10 @@ class CFormUtils {
     }
 
     return null;
+  }
+
+  static bool isDirectionRTL(BuildContext context) {
+    return Bidi.isRtlLanguage(Localizations.localeOf(context).languageCode);
   }
 }
 

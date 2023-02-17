@@ -10,6 +10,8 @@ class CFormImagePickerModel extends CFormFieldModel {
   String? galleryPopupIcon;
   CFormImageSource? imageSource;
   bool? showCropper;
+  double? maximumSizePerImageInBytes;
+  VoidCallback? onErrorSizeItem;
 
   CFormImagePickerModel({
     type,
@@ -30,6 +32,8 @@ class CFormImagePickerModel extends CFormFieldModel {
     this.galleryPopupTitle,
     this.imageSource,
     this.hint,
+    this.maximumSizePerImageInBytes,
+    this.onErrorSizeItem,
   }) : super(
             type: type,
             tag: tag,

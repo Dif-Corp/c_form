@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:c_form/c_form/c_form_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:c_form/c_form/c_form_style.dart';
 import 'package:c_form/c_form/core/c_form_field_call_back.dart';
@@ -108,13 +109,22 @@ class _CFormDateRangePickerFieldState extends State<CFormDateRangePickerField> {
           child: Row(
             children: [
               Expanded(
-                child: Text(
-                  widget.selectedDateText.isEmpty
-                      ? widget.model.hint ?? ''
-                      : widget.selectedDateText,
-                  style: widget.isDateSelected
-                      ? widget.formStyle.fieldTextStyle
-                      : widget.formStyle.fieldHintStyle,
+                child: Align(
+                  alignment:
+                      widget.model.dateFormatType == CFormDateFormatType.numeric
+                          ? Alignment.centerLeft
+                          : CFormUtils.isDirectionRTL(context)
+                              ? Alignment.centerRight
+                              : Alignment.centerLeft,
+                  child: Text(
+                    widget.selectedDateText.isEmpty
+                        ? widget.model.hint ?? ''
+                        : widget.selectedDateText,
+                    style: widget.isDateSelected
+                        ? widget.formStyle.fieldTextStyle
+                        : widget.formStyle.fieldHintStyle,
+                    maxLines: 1,
+                  ),
                 ),
               ),
             ],

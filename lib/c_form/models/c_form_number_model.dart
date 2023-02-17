@@ -4,6 +4,7 @@ import 'package:c_form/c_form/models/c_form_field_model.dart';
 class CFormNumberModel extends CFormFieldModel {
   int? maxLength;
   String? hint;
+  bool? showCounter;
 
   CFormNumberModel(
       {type,
@@ -20,6 +21,7 @@ class CFormNumberModel extends CFormFieldModel {
       weight,
       focusNode,
       showTitle,
+      this.showCounter,
       this.maxLength,
       this.hint})
       : super(

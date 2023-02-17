@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:c_form/c_form/c_form_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:c_form/c_form/c_form_style.dart';
 import 'package:c_form/c_form/core/c_form_field_call_back.dart';
@@ -83,31 +84,40 @@ class _CFormDatePickerFieldState extends State<CFormDatePickerField> {
   @override
   Widget build(BuildContext context) {
     widget.context = context;
-    return Padding(
-      padding:
-          const EdgeInsets.only(right: 10.0, left: 10.0, top: 18, bottom: 18),
-      child: InkWell(
+    return InkWell(
+      onTap: () {
+        if (widget.model.calendarType == CFormCalendarType.jalali) {
+          _openDatePicker();
+        } else {
+          _openGregorianPicker();
+        }
+      },
+      child: Padding(
+        padding:
+            const EdgeInsets.only(right: 10.0, left: 10.0, top: 18, bottom: 18),
         child: Row(
           children: [
             Expanded(
-              child: Text(
-                widget.selectedDateText.isEmpty
-                    ? widget.model.hint ?? ''
-                    : widget.selectedDateText,
-                style: widget.isDateSelected
-                    ? widget.formStyle.fieldTextStyle
-                    : widget.formStyle.fieldHintStyle,
+              child: Align(
+                alignment:
+                    widget.model.dateFormatType == CFormDateFormatType.numeric
+                        ? Alignment.centerLeft
+                        : CFormUtils.isDirectionRTL(context)
+                            ? Alignment.centerRight
+                            : Alignment.centerLeft,
+                child: Text(
+                  widget.selectedDateText.isEmpty
+                      ? widget.model.hint ?? ''
+                      : widget.selectedDateText,
+                  style: widget.isDateSelected
+                      ? widget.formStyle.fieldTextStyle
+                      : widget.formStyle.fieldHintStyle,
+                  maxLines: 1,
+                ),
               ),
             ),
           ],
         ),
-        onTap: () {
-          if (widget.model.calendarType == CFormCalendarType.jalali) {
-            _openDatePicker();
-          } else {
-            _openGregorianPicker();
-          }
-        },
       ),
     );
   }

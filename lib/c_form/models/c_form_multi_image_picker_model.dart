@@ -12,7 +12,7 @@ class CFormMultiImagePickerModel extends CFormFieldModel {
   CFormImageSource? imageSource;
   bool? showCropper;
   List<String>? defaultImagePath;
-  double? maximumSizePerImageInBytes;
+  double? maximumSizePerImageInKB;
   double? maximumImageCount;
   VoidCallback? onErrorSizeItem;
 
@@ -29,7 +29,7 @@ class CFormMultiImagePickerModel extends CFormFieldModel {
     required this.iconWidget,
     this.maximumImageCount,
     this.onErrorSizeItem,
-    this.maximumSizePerImageInBytes,
+    this.maximumSizePerImageInKB,
     this.defaultImagePath,
     this.cameraPopupIcon,
     this.galleryPopupIcon,
