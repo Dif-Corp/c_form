@@ -19,7 +19,7 @@ class CFormMultiImagePickerField extends StatefulWidget
 
   CFormMultiImagePickerField(this.model, this.formStyle, {Key? key})
       : super(key: key);
-  List<String>? _croppedFilePaths = [];
+  List<String> _croppedFilePaths = [];
 
   @override
   State<CFormMultiImagePickerField> createState() =>
@@ -35,7 +35,7 @@ class CFormMultiImagePickerField extends StatefulWidget
     if (!(model.required ?? false)) {
       return true;
     } else {
-      return (_croppedFilePaths ?? []).isNotEmpty;
+      return (_croppedFilePaths).isNotEmpty;
     }
   }
 }
@@ -46,7 +46,7 @@ class _CFormMultiImagePickerFieldState
   void initState() {
     super.initState();
     if ((widget.model.defaultImagePath ?? []).isNotEmpty) {
-      widget._croppedFilePaths = widget.model.defaultValue;
+      widget._croppedFilePaths.addAll(widget.model.defaultImagePath ?? []);
     } else {
       widget._croppedFilePaths = [];
     }
@@ -65,7 +65,7 @@ class _CFormMultiImagePickerFieldState
             mainAxisSpacing: 10.0,
             crossAxisSpacing: 10.0,
           ),
-          itemCount: widget._croppedFilePaths!.length + 1,
+          itemCount: widget._croppedFilePaths.length + 1,
           itemBuilder: (context, index) {
             return index == 0
                 ? SelectItem(
@@ -73,15 +73,15 @@ class _CFormMultiImagePickerFieldState
                     style: widget.formStyle,
                     isEnable: _enableSelectImageButton(),
                     callBack: (imagePath) {
-                      widget._croppedFilePaths?.add(imagePath);
+                      widget._croppedFilePaths.add(imagePath);
                       setState(() {});
                     },
                   )
                 : ImageBox(
-                    imagePath: widget._croppedFilePaths?[index - 1] ?? '',
+                    imagePath: widget._croppedFilePaths[index - 1],
                     onDelete: (value) {
                       widget._croppedFilePaths
-                          ?.removeWhere((element) => element == value);
+                          .removeWhere((element) => element == value);
                       setState(() {});
                     },
                   );
@@ -91,7 +91,7 @@ class _CFormMultiImagePickerFieldState
 
   bool _enableSelectImageButton() {
     if (widget.model.maximumImageCount != null) {
-      if (widget._croppedFilePaths!.length >= widget.model.maximumImageCount!) {
+      if (widget._croppedFilePaths.length >= widget.model.maximumImageCount!) {
         return false;
       } else {
         return true;

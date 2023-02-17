@@ -635,22 +635,25 @@ class CFormField extends StatefulWidget {
     int? maxLength,
     String? hint,
     TimeOfDay? initialTime,
+    // TimePickerType ? timePickerType ,
   }) : super(key: key) {
     model = CFormTimePickerModel(
-        type: CFormFieldTypeEnum.time,
-        tag: tag,
-        showTitle: showTitle ?? true,
-        title: title,
-        errorMessage: errorMessage,
-        helpMessage: helpMessage,
-        prefixWidget: prefixWidget,
-        postfixWidget: postfixWidget,
-        required: required,
-        status: status,
-        value: value,
-        weight: weight,
-        hint: hint,
-        initialTime: initialTime);
+      type: CFormFieldTypeEnum.time,
+      tag: tag,
+      showTitle: showTitle ?? true,
+      title: title,
+      errorMessage: errorMessage,
+      helpMessage: helpMessage,
+      prefixWidget: prefixWidget,
+      postfixWidget: postfixWidget,
+      required: required,
+      status: status,
+      value: value,
+      weight: weight,
+      hint: hint,
+      initialTime: initialTime,
+      timePickerType: TimePickerType.english,
+    );
   }
 
   CFormField.email({

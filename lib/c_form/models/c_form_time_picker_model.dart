@@ -4,11 +4,13 @@ import 'package:c_form/c_form/models/c_form_field_model.dart';
 class CFormTimePickerModel extends CFormFieldModel {
   String? hint;
   TimeOfDay? initialTime;
+  TimePickerType? timePickerType;
 
   CFormTimePickerModel({
     type,
     tag,
     title,
+    this.timePickerType,
     errorMessage,
     helpMessage,
     prefixWidget,
@@ -37,3 +39,5 @@ class CFormTimePickerModel extends CFormFieldModel {
           showTitle: showTitle,
         );
 }
+
+enum TimePickerType { persian, english } // REVIEW - 

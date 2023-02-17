@@ -84,17 +84,39 @@ class _CFormTimePickerFieldState extends State<CFormTimePickerField> {
           ],
         ),
         onTap: () {
-          _openTimePicker();
+          if (widget.model.timePickerType == TimePickerType.persian) {
+            _openPersianTimePicker();
+          } else {
+            _openTimePicker();
+          }
         },
       ),
     );
   }
 
-  _openTimePicker() async {
+  _openPersianTimePicker() async {
     var picked = await showPersianTimePicker(
       context: widget.context,
       initialTime: widget.model.initialTime ?? TimeOfDay.now(),
       initialEntryMode: PTimePickerEntryMode.dial,
+      useRootNavigator: false,
+    );
+    if (picked != null) {
+      widget.selectedTime = picked;
+      widget.model.initialTime = picked;
+      widget.isTimeSelected = true;
+      _displayTime(picked);
+      update();
+    } else {
+      widget.isTimeSelected = false;
+    }
+  }
+
+  _openTimePicker() async {
+    var picked = await showTimePicker(
+      context: widget.context,
+      initialTime: widget.model.initialTime ?? TimeOfDay.now(),
+      initialEntryMode: TimePickerEntryMode.dial,
       useRootNavigator: false,
     );
     if (picked != null) {
