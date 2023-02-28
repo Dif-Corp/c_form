@@ -164,9 +164,25 @@ class SelectItem extends StatelessWidget {
                 );
               }
             },
-            child: Container(
-              color: isEnable ? Colors.transparent : Colors.black45,
-              child: model.iconWidget,
+            child: Stack(
+              children: [
+                Container(
+                  child: model.iconWidget,
+                ),
+                Visibility(
+                  visible: !isEnable,
+                  child: Container(
+                    height: 90,
+                    width: 90,
+                    decoration: const BoxDecoration(
+                      color: Colors.black45,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

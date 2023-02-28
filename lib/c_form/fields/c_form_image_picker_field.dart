@@ -105,21 +105,25 @@ class _CFormImagePickerFieldState extends State<CFormImagePickerField> {
     if (widget.model.showCropper ?? false) {
       _cropImage(image);
     } else {
-      setState(() {});
-      if (widget.model.maximumSizePerImageInBytes != null) {
-        if (image.lengthSync() / 1000 <
-            widget.model.maximumSizePerImageInBytes!) {
-          widget._croppedFilePath = image.path;
+      setState(() {
+        if (widget.model.maximumSizePerImageInBytes != null) {
+          if (image.lengthSync() / 1000 <
+              widget.model.maximumSizePerImageInBytes!) {
+            widget._croppedFilePath = image.path;
+          } else {
+            widget.model.onErrorSizeItem?.call();
+          }
         } else {
-          widget.model.onErrorSizeItem?.call();
+          widget._croppedFilePath = image.path;
         }
-      } else {
-        widget._croppedFilePath = image.path;
-      }
+      });
     }
   }
 
   Future<void> _cropImage(File image) async {
+    // FIXME - Il y a un bug avec ImageCropper
+    // REVIEW - est ce quee si on crop ça prends bien le crop?
+    // final croppedFile = null;
     final croppedFile = await ImageCropper().cropImage(
       sourcePath: image.path,
       compressFormat: ImageCompressFormat.jpg,
@@ -136,6 +140,7 @@ class _CFormImagePickerFieldState extends State<CFormImagePickerField> {
         ),
       ],
     );
+
     if (croppedFile != null) {
       setState(() {
         if (widget.model.maximumSizePerImageInBytes != null) {
