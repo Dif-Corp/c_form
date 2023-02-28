@@ -216,6 +216,7 @@ class CFormField extends StatefulWidget {
       weight: weight,
       items: items,
       hint: hint,
+      validateRegEx: validateRegEx,
     );
   }
 
@@ -248,30 +249,31 @@ class CFormField extends StatefulWidget {
       required ValueChanged<RadioDataModel> callBack})
       : super(key: key) {
     model = CFormRadioModel(
-        type: CFormFieldTypeEnum.radioGroup,
-        tag: tag,
-        showTitle: showTitle ?? true,
-        title: title,
-        errorMessage: errorMessage,
-        helpMessage: helpMessage,
-        required: required,
-        status: status,
-        value: value,
-        weight: weight,
-        showScrollBar: showScrollBar,
-        scrollBarColor: scrollBarColor,
-        hint: hint,
-        items: items,
-        callBack: callBack,
-        scrollDirection: scrollDirection,
-        unSelectedIcon: unSelectedIcon,
-        selectedIcon: selectedIcon,
-        scrollable: scrollable ?? false,
-        height: height,
-        searchable: searchable,
-        searchHint: searchHint,
-        searchIcon: searchIcon,
-        searchBoxDecoration: searchBoxDecoration);
+      type: CFormFieldTypeEnum.radioGroup,
+      tag: tag,
+      showTitle: showTitle ?? true,
+      title: title,
+      errorMessage: errorMessage,
+      helpMessage: helpMessage,
+      required: required,
+      status: status,
+      value: value,
+      weight: weight,
+      showScrollBar: showScrollBar,
+      scrollBarColor: scrollBarColor,
+      hint: hint,
+      items: items,
+      callBack: callBack,
+      scrollDirection: scrollDirection,
+      unSelectedIcon: unSelectedIcon,
+      selectedIcon: selectedIcon,
+      scrollable: scrollable ?? false,
+      height: height,
+      searchable: searchable,
+      searchHint: searchHint,
+      searchIcon: searchIcon,
+      searchBoxDecoration: searchBoxDecoration,
+    );
   }
 
   CFormField.checkList({
@@ -371,6 +373,7 @@ class CFormField extends StatefulWidget {
       weight: weight,
       maxLength: maxLength,
       hint: hint,
+      validateRegEx: validateRegEx,
     );
   }
 
@@ -407,6 +410,7 @@ class CFormField extends StatefulWidget {
       weight: weight,
       hint: hint,
       maxLength: maxLength,
+      validateReg: validateReg,
     );
   }
 
@@ -431,23 +435,25 @@ class CFormField extends StatefulWidget {
       bool? showCounter})
       : super(key: key) {
     model = CFormTextPlainModel(
-        type: CFormFieldTypeEnum.textPlain,
-        tag: tag,
-        title: title,
-        showTitle: showTitle ?? true,
-        errorMessage: errorMessage,
-        helpMessage: helpMessage,
-        prefixWidget: prefixWidget,
-        postfixWidget: postfixWidget,
-        required: required,
-        status: status,
-        value: value,
-        weight: weight,
-        hint: hint,
-        maxLine: maxLine,
-        minLine: minLine,
-        maxLength: maxLength,
-        showCounter: showCounter);
+      type: CFormFieldTypeEnum.textPlain,
+      tag: tag,
+      title: title,
+      showTitle: showTitle ?? true,
+      errorMessage: errorMessage,
+      helpMessage: helpMessage,
+      prefixWidget: prefixWidget,
+      postfixWidget: postfixWidget,
+      required: required,
+      status: status,
+      value: value,
+      weight: weight,
+      hint: hint,
+      maxLine: maxLine,
+      minLine: minLine,
+      maxLength: maxLength,
+      showCounter: showCounter,
+      validateRegEx: validateRegEx,
+    );
   }
 
   CFormField.mobile({
@@ -482,6 +488,7 @@ class CFormField extends StatefulWidget {
       weight: weight,
       maxLength: maxLength,
       hint: hint,
+      validateReg: validateRegEx,
     );
   }
 
@@ -519,6 +526,7 @@ class CFormField extends StatefulWidget {
       maxLength: maxLength,
       hint: hint,
       showCounter: showCounter,
+      validateRegEx: validateRegEx,
     );
   }
 
@@ -546,25 +554,26 @@ class CFormField extends StatefulWidget {
     CFormDate? availableTo,
   }) : super(key: key) {
     model = CFormDatePickerModel(
-        type: CFormFieldTypeEnum.date,
-        tag: tag,
-        title: title,
-        errorMessage: errorMessage,
-        helpMessage: helpMessage,
-        showTitle: showTitle ?? true,
-        calendarType: calendarType,
-        prefixWidget: prefixWidget,
-        postfixWidget: postfixWidget,
-        required: required,
-        status: status,
-        value: value,
-        weight: weight,
-        hint: hint,
-        isPastAvailable: isPastAvailable,
-        dateFormatType: displayDateType,
-        initialDate: initialDate,
-        availableFrom: availableTo,
-        availableTo: availableTo);
+      type: CFormFieldTypeEnum.date,
+      tag: tag,
+      title: title,
+      errorMessage: errorMessage,
+      helpMessage: helpMessage,
+      showTitle: showTitle ?? true,
+      calendarType: calendarType,
+      prefixWidget: prefixWidget,
+      postfixWidget: postfixWidget,
+      required: required,
+      status: status,
+      value: value,
+      weight: weight,
+      hint: hint,
+      isPastAvailable: isPastAvailable,
+      dateFormatType: displayDateType,
+      initialDate: initialDate,
+      availableFrom: availableTo,
+      availableTo: availableTo,
+    );
   }
 
   CFormField.dateRangePicker({
@@ -594,28 +603,30 @@ class CFormField extends StatefulWidget {
     CFormDate? availableTo,
   }) : super(key: key) {
     model = CFormDateRangePickerModel(
-        type: CFormFieldTypeEnum.dateRage,
-        tag: tag,
-        title: title,
-        errorMessage: errorMessage,
-        helpMessage: helpMessage,
-        from: from ?? 'From ',
-        to: to ?? 'To ',
-        prefixWidget: prefixWidget,
-        postfixWidget: postfixWidget,
-        showTitle: showTitle ?? true,
-        required: required,
-        status: status,
-        value: value,
-        weight: weight,
-        hint: hint,
-        isPastAvailable: isPastAvailable,
-        dateFormatType: displayDateType,
-        initialStartDate: initialStartDate,
-        initialEndDate: initialEndDate,
-        availableFrom: availableTo,
-        availableTo: availableTo,
-        calendarType: calendarType);
+      type: CFormFieldTypeEnum.dateRage,
+      tag: tag,
+      title: title,
+      errorMessage: errorMessage,
+      helpMessage: helpMessage,
+      from: from ?? 'From ',
+      to: to ?? 'To ',
+      prefixWidget: prefixWidget,
+      postfixWidget: postfixWidget,
+      showTitle: showTitle ?? true,
+      required: required,
+      status: status,
+      value: value,
+      weight: weight,
+      hint: hint,
+      isPastAvailable: isPastAvailable,
+      dateFormatType: displayDateType,
+      initialStartDate: initialStartDate,
+      initialEndDate: initialEndDate,
+      availableFrom: availableTo,
+      availableTo: availableTo,
+      calendarType: calendarType,
+      validateReg: validateReg,
+    );
   }
 
   CFormField.time({
@@ -653,6 +664,7 @@ class CFormField extends StatefulWidget {
       hint: hint,
       initialTime: initialTime,
       timePickerType: TimePickerType.english,
+      validateReg: validateReg,
     );
   }
 
@@ -688,6 +700,7 @@ class CFormField extends StatefulWidget {
       weight: weight,
       maxLength: maxLength,
       hint: hint,
+      validateRegEx: validateRegEx,
     );
   }
 
@@ -726,6 +739,7 @@ class CFormField extends StatefulWidget {
       weight: weight,
       maxLength: maxLength,
       hint: hint,
+      validateRegEx: validateRegEx,
     );
   }
 
@@ -761,6 +775,7 @@ class CFormField extends StatefulWidget {
       value: value,
       weight: weight,
       hint: hint,
+      validateRegEx: validateRegEx,
     );
   }
 
