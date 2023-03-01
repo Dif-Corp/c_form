@@ -1,9 +1,11 @@
+import 'package:c_form/c_form/c_form_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:c_form/c_form/c_form_style.dart';
 import 'package:c_form/c_form/core/c_form_field_call_back.dart';
 import 'package:c_form/c_form/models/c_form_number_model.dart';
 
-class CFormNumberField extends StatelessWidget implements CFormFieldCallBack {
+class CFormNumberField<T> extends StatelessWidget
+    implements CFormFieldCallBack {
   final CFormNumberModel model;
   final CFormStyle formStyle;
 
@@ -45,12 +47,13 @@ class CFormNumberField extends StatelessWidget implements CFormFieldCallBack {
   }
 
   @override
-  getValue() {
-    return controller!.text;
+  T? getValue() {
+    return CFormUtils.asT<T>(controller!.text);
   }
 
   @override
   bool isValid() {
+    // TODO - Peut être vérifier avant tout si c'est un nombre.
     if (model.validateRegEx == null) {
       if (!(model.required ?? false)) {
         return true;

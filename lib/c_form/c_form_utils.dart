@@ -208,6 +208,44 @@ class CFormUtils {
   static bool isDirectionRTL(BuildContext context) {
     return Bidi.isRtlLanguage(Localizations.localeOf(context).languageCode);
   }
+
+  /// * Explication par ChatGPT
+  ///
+  /// Ce code est une fonction générique en Dart appelée "asT" qui prend une valeur "value" de type dynamique et renvoie la valeur "value" convertie en type T ou renvoie null si la conversion échoue.
+  ///
+  /// La fonction commence par vérifier si la valeur "value" est déjà du type T en utilisant l'opérateur "is". Si c'est le cas, elle renvoie simplement "value". Sinon, la fonction essaie de convertir "value" en type T en fonction de certaines conditions.
+  ///
+  /// La première condition vérifie si T est un entier en vérifiant si 0 est de type T. Si c'est le cas, la fonction essaie de convertir la valeur en entier en utilisant la méthode "tryParse" de la classe "int" et renvoie le résultat de la conversion sous forme de type T.
+  ///
+  /// La deuxième condition vérifie si T est un double en vérifiant si 0.0 est de type T. Si c'est le cas, la fonction essaie de convertir la valeur en double en utilisant la méthode "tryParse" de la classe "double" et renvoie le résultat de la conversion sous forme de type T.
+  ///
+  /// La troisième condition vérifie si T est une chaîne de caractères en vérifiant si '' est de type T. Si c'est le cas, la fonction renvoie simplement la valeur "value" sous forme de type T en utilisant la méthode "toString".
+  ///
+  /// La quatrième condition vérifie si T est un booléen en vérifiant si false est de type T. Si c'est le cas, la fonction essaie de convertir la valeur en booléen en vérifiant si elle correspond à "true", "false", "0" ou "1". Si la valeur correspond à "true" ou "1", la fonction renvoie true sous forme de type T. Si la valeur correspond à "false" ou "0", la fonction renvoie false sous forme de type T. Sinon, la fonction renvoie null.
+  ///
+  /// Si la valeur "value" est null ou si aucune des conditions précédentes n'est vraie, la fonction renvoie simplement null.
+  ///
+  static T? asT<T>(dynamic value) {
+    if (value is T) {
+      return value;
+    }
+    if (value != null) {
+      final String valueS = value.toString();
+      if (0 is T) {
+        return int.tryParse(valueS) as T?;
+      } else if (0.0 is T) {
+        return double.tryParse(valueS) as T?;
+      } else if ('' is T) {
+        return valueS as T;
+      } else if (false is T) {
+        if (valueS == '0' || valueS == '1') {
+          return (valueS == '1') as T;
+        }
+        return (valueS == 'true') as T;
+      }
+    }
+    return null;
+  }
 }
 
 class CardNumberFormatter extends TextInputFormatter {

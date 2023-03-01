@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:c_form/c_form/c_form_field_status_enum.dart';
 import 'package:c_form/c_form/c_form_field_type_enum.dart';
 
-abstract class CFormFieldModel {
+abstract class CFormFieldModel<T> {
   CFormFieldTypeEnum? type;
   String? title;
   String tag;

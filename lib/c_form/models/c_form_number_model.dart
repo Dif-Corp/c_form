@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:c_form/c_form/models/c_form_field_model.dart';
 
-class CFormNumberModel extends CFormFieldModel {
+class CFormNumberModel<T> extends CFormFieldModel {
   int? maxLength;
   String? hint;
   bool? showCounter;

@@ -48,12 +48,14 @@ import 'package:c_form/c_form/models/data_model/radio_data_model.dart';
 import 'package:c_form/c_form/models/data_model/spinner_data_model.dart';
 
 // ignore: must_be_immutable
-class CFormField extends StatefulWidget {
+class CFormField<T> extends StatefulWidget {
   late CFormFieldModel model;
   Widget? child;
   CFormStyle? formStyle;
 
   VoidCallback? onUpdate;
+
+  Type typeOfT() => T;
 
   update() {
     onUpdate!.call();
@@ -510,7 +512,7 @@ class CFormField extends StatefulWidget {
     bool? showCounter,
     String? hint,
   }) : super(key: key) {
-    model = CFormNumberModel(
+    model = CFormNumberModel<T>(
       type: CFormFieldTypeEnum.number,
       showTitle: showTitle ?? true,
       tag: tag,
@@ -784,12 +786,12 @@ class CFormField extends StatefulWidget {
   //</editor-fold>
 
   @override
-  State<CFormField> createState() => _CFormFieldState();
+  State<CFormField<T>> createState() => _CFormFieldState<T>();
 }
 
-class _CFormFieldState extends State<CFormField> {
+class _CFormFieldState<T> extends State<CFormField<T>> {
   @override
-  void didUpdateWidget(covariant CFormField oldWidget) {
+  void didUpdateWidget(covariant CFormField<T> oldWidget) {
     _fillChild();
     super.didUpdateWidget(oldWidget);
   }
@@ -927,7 +929,7 @@ class _CFormFieldState extends State<CFormField> {
             CFormTextField(widget.model as CFormTextModel, widget.formStyle!);
         break;
       case CFormFieldTypeEnum.number:
-        widget.child = CFormNumberField(
+        widget.child = CFormNumberField<T>(
             widget.model as CFormNumberModel, widget.formStyle!);
         break;
       case CFormFieldTypeEnum.textPlain:
