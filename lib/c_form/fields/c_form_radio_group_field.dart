@@ -137,6 +137,16 @@ class _CFormRadioGroupFieldState extends State<CFormRadioGroupField> {
                   color: Colors.transparent,
                   child: InkWell(
                     onTap: () {
+                      // S'il était sélectionné on le désactive simplement et on rénitialise les choses
+                      if (filteredItems[index].isSelected) {
+                        for (var element in filteredItems) {
+                          element.isSelected = false;
+                        }
+                        widget.model.callBack(filteredItems[index]);
+                        widget.returnedData = null;
+                        setState(() => {});
+                        return;
+                      }
                       for (var element in filteredItems) {
                         element.isSelected = false;
                       }
