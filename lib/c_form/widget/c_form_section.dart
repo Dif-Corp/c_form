@@ -55,11 +55,13 @@ class CFormSection extends StatelessWidget {
         }
         rows.add(Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: childrenAtRow));
         weightSum = 0;
       } else {
         rows.add(
           Row(
+            crossAxisAlignment: CrossAxisAlignment.end, //
             children: [
               Expanded(
                 flex: 12,
@@ -81,10 +83,12 @@ class CFormSection extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text(
-                          sectionTitle!,
-                          style: style?.sectionTitleStyle ??
-                              CFormTheme.textThemeStyle.displayLarge,
+                        Flexible(
+                          child: Text(
+                            sectionTitle!,
+                            style: style?.sectionTitleStyle ??
+                                CFormTheme.textThemeStyle.displayLarge,
+                          ),
                         ),
                       ],
                     ),

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:c_form/c_form/models/c_form_field_model.dart';
 
-class CFormPriceModel extends CFormFieldModel {
+class CFormPriceModel<T> extends CFormFieldModel {
   int? maxLength;
 
   String? hint;

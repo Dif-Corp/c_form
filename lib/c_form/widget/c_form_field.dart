@@ -239,9 +239,9 @@ class CFormField<T> extends StatefulWidget {
       Axis? scrollDirection,
       Widget? selectedIcon,
       Widget? unSelectedIcon,
-      bool? scrollable,
-      double? height,
-      bool? showScrollBar,
+      bool? scrollable = true,
+      double? height = 200.0,
+      bool? showScrollBar = true,
       Color? scrollBarColor,
       required bool searchable,
       String? searchHint,
@@ -723,7 +723,7 @@ class CFormField<T> extends StatefulWidget {
     int? maxLength,
     String? hint,
   }) : super(key: key) {
-    model = CFormPriceModel(
+    model = CFormPriceModel<T>(
       type: CFormFieldTypeEnum.price,
       tag: tag,
       title: title,
@@ -827,8 +827,10 @@ class _CFormFieldState<T> extends State<CFormField<T>> {
                     children: [
                       Row(
                         children: [
-                          Text(widget.model.title ?? "",
-                              style: widget.formStyle!.titleTextStyle),
+                          Flexible(
+                            child: Text(widget.model.title ?? "",
+                                style: widget.formStyle!.titleTextStyle),
+                          ),
                           const SizedBox(width: 4.0),
                           Opacity(
                             opacity: widget.model.required ?? false ? 1 : 0,
@@ -961,8 +963,8 @@ class _CFormFieldState<T> extends State<CFormField<T>> {
             CFormEmailField(widget.model as CFormEmailModel, widget.formStyle!);
         break;
       case CFormFieldTypeEnum.price:
-        widget.child =
-            CFormPriceField(widget.model as CFormPriceModel, widget.formStyle!);
+        widget.child = CFormPriceField<T>(
+            widget.model as CFormPriceModel, widget.formStyle!);
         break;
       case CFormFieldTypeEnum.bankCard:
         widget.child = CFormBankCardField(

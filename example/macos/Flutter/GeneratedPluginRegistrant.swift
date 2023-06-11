@@ -6,7 +6,7 @@ import FlutterMacOS
 import Foundation
 
 import c_form
-import path_provider_macos
+import path_provider_foundation
 import photo_manager
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {

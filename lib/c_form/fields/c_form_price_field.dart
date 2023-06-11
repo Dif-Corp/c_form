@@ -1,12 +1,13 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:c_form/c_form/c_form_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:c_form/c_form/c_form_style.dart';
 import 'package:c_form/c_form/core/c_form_field_call_back.dart';
 import 'package:c_form/c_form/models/c_form_price_model.dart';
 import 'package:intl/intl.dart';
 
-class CFormPriceField extends StatelessWidget implements CFormFieldCallBack {
+class CFormPriceField<T> extends StatelessWidget implements CFormFieldCallBack {
   late CFormPriceModel model;
   CFormStyle formStyle;
 
@@ -54,8 +55,8 @@ class CFormPriceField extends StatelessWidget implements CFormFieldCallBack {
   }
 
   @override
-  getValue() {
-    return controller!.text;
+  T? getValue() {
+    return CFormUtils.asT<T>(CFormUtils.removeSpaces(controller!.text));
   }
 
   @override
@@ -71,6 +72,6 @@ class CFormPriceField extends StatelessWidget implements CFormFieldCallBack {
     }
   }
 
-  String _formatNumber(String s) =>
-      NumberFormat.decimalPattern().format(int.parse(s));
+  String _formatNumber(String s) => NumberFormat.decimalPattern()
+      .format(int.parse(s.replaceAll(RegExp(r'[\s ]+'), '')));
 }

@@ -112,6 +112,7 @@ class _CFormRadioGroupFieldState extends State<CFormRadioGroupField> {
                 height: 0,
               ),
         SizedBox(
+          // Remplacer par un constraint pour un maxHeight (voir aussi au niveau du check list)
           height: widget.model.height,
           child: RawScrollbar(
             thumbColor: widget.model.scrollBarColor ?? Colors.blue,

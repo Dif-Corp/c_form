@@ -246,6 +246,10 @@ class CFormUtils {
     }
     return null;
   }
+
+  static String removeSpaces(String value) {
+    return value.replaceAll(RegExp(r'[\s ]+'), '');
+  }
 }
 
 class CardNumberFormatter extends TextInputFormatter {
