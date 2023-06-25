@@ -904,13 +904,16 @@ class _CFormFieldState<T> extends State<CFormField<T>> {
                         ),
                       ),
                       const SizedBox(width: 1.0),
-                      Text(
-                        widget.model.status == CFormFieldStatusEnum.error
-                            ? widget.model.errorMessage ?? ''
-                            : widget.model.helpMessage ?? '',
-                        style: widget.model.status == CFormFieldStatusEnum.error
-                            ? widget.formStyle!.errorTextStyle
-                            : widget.formStyle!.helpTextStyle,
+                      Flexible(
+                        child: Text(
+                          widget.model.status == CFormFieldStatusEnum.error
+                              ? widget.model.errorMessage ?? ''
+                              : widget.model.helpMessage ?? '',
+                          style:
+                              widget.model.status == CFormFieldStatusEnum.error
+                                  ? widget.formStyle!.errorTextStyle
+                                  : widget.formStyle!.helpTextStyle,
+                        ),
                       ),
                     ],
                   ),

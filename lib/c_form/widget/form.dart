@@ -83,4 +83,34 @@ class CForm extends StatelessWidget {
     }
     return data;
   }
+
+  /// Permet d'indiquer des erreurs du formulaire qui viennent d'un serveur
+  /// distant par exemple en considérant les tags.
+  /// NB : En cas de problèmes de cast on peut utiliser
+  /// ~~~dart
+  /// // [errors] est dynamic
+  /// _form.addErrors(((errors ?? {}) as Map<dynamic, dynamic>) .cast<String, dynamic>());
+  /// ~~~
+  void addErrors(Map<String, dynamic> errors) {
+    for (var section in sections) {
+      for (var field in section.fields) {
+        if (field is CFormField) {
+          if (errors.containsKey(field.model.tag)) {
+            field.model.status = CFormFieldStatusEnum.error;
+            if (errors[field.model.tag] is List) {
+              var errorMessage = "";
+              for (var err in errors[field.model.tag]) {
+                errorMessage += " $err";
+              }
+              field.model.errorMessage = errorMessage.trim();
+            }
+            if (errors[field.model.tag] is String) {
+              field.model.errorMessage = errors[field.model.tag];
+            }
+            field.update();
+          }
+        }
+      }
+    }
+  }
 }
