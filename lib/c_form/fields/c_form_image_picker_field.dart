@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:c_form/c_form/enums/tmage_source.dart';
+import 'package:c_form/c_form/enums/image_source.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:c_form/c_form/c_form_colors.dart';
