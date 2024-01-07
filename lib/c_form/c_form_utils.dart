@@ -1,18 +1,15 @@
-import 'dart:developer';
 import 'dart:io';
 
-import 'package:c_form/c_form/enums/image_source.dart';
+// import 'package:c_form/c_form/enums/image_source.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:c_form/c_form/c_form_colors.dart';
 import 'package:c_form/c_form/c_form_field_status_enum.dart';
 import 'package:c_form/c_form/c_form_style.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:wechat_assets_picker/wechat_assets_picker.dart';
-import 'package:wechat_camera_picker/wechat_camera_picker.dart';
 
 class CFormUtils {
   static bool checkIfDarkModeEnabled(BuildContext context) {
@@ -166,6 +163,17 @@ class CFormUtils {
   }
 
   static Future<File?> pickImage(ImageSource imageSource) async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(
+      source: imageSource,
+      // maxWidth: 400,
+      // maxHeight: 400,
+    );
+
+    if (image != null) {
+      return File(image.path);
+    }
+    /* NOTE - Utilisation de wechat_asstes_picker et wechat_camera_picker
     AssetEntity? entity;
     try {
       //
@@ -201,6 +209,7 @@ class CFormUtils {
       // return File(image.path);
       return entity.file;
     }
+    // */
 
     return null;
   }

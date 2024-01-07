@@ -8,22 +8,22 @@ environment:
   flutter: ">=2.5.0"
 
 dependencies:
+  figma_squircle: ^0.5.3
   flutter:
     sdk: flutter
+  flutter_svg: ^2.0.9
   flutter_web_plugins:
     sdk: flutter
-  plugin_platform_interface: ^2.0.2
   get: ^4.6.5
-  figma_squircle: ^0.5.3
-  persian_datetime_picker: ^2.5.0
-  intl: ^0.17.0
+  image_cropper: ^5.0.1
+  image_picker: ^1.0.5
+  intl: ^0.18.1
+  path_provider: ^2.1.1
+  persian_datetime_picker: ^2.6.0
+  plugin_platform_interface: ^2.1.7
   qr_code_scanner: ^1.0.1
-  image_cropper: ^3.0.0
-  # image_picker: ^0.8.5+3
-  wechat_assets_picker: ^8.3.1+1
-  wechat_camera_picker: ^3.7.0
-  flutter_svg: ^1.1.0
-  path_provider: ^2.0.11
+  # wechat_assets_picker: ^8.6.3
+  # wechat_camera_picker: ^4.1.2
 
 dev_dependencies:
   flutter_test:

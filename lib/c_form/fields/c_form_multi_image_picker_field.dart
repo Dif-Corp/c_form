@@ -4,12 +4,13 @@ import 'package:c_form/c_form/c_form_colors.dart';
 import 'package:c_form/c_form/c_form_style.dart';
 import 'package:c_form/c_form/c_form_utils.dart';
 import 'package:c_form/c_form/core/c_form_field_call_back.dart';
-import 'package:c_form/c_form/enums/image_source.dart';
+// import 'package:c_form/c_form/enums/image_source.dart';
 import 'package:c_form/c_form/models/c_form_image_picker_model.dart';
 import 'package:c_form/c_form/models/c_form_multi_image_picker_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 
 // ignore: must_be_immutable
 class CFormMultiImagePickerField extends StatefulWidget
