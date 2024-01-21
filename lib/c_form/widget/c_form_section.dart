@@ -55,13 +55,15 @@ class CFormSection extends StatelessWidget {
         }
         rows.add(Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment:
+                CrossAxisAlignment.start, // CrossAxisAlignment.end
             children: childrenAtRow));
         weightSum = 0;
       } else {
         rows.add(
           Row(
-            crossAxisAlignment: CrossAxisAlignment.end, //
+            crossAxisAlignment:
+                CrossAxisAlignment.start, // CrossAxisAlignment.end
             children: [
               Expanded(
                 flex: 12,
