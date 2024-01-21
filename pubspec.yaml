@@ -8,6 +8,7 @@ environment:
   flutter: ">=2.5.0"
 
 dependencies:
+  dropdown_search: ^5.0.6
   figma_squircle: ^0.5.3
   flutter:
     sdk: flutter

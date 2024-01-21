@@ -1,5 +1,7 @@
 import 'package:c_form/c_form/fields/c_form_multi_image_picker_field.dart';
+import 'package:c_form/c_form/fields/c_form_spinner_with_search_field.dart';
 import 'package:c_form/c_form/models/c_form_multi_image_picker_model.dart';
+import 'package:c_form/c_form/models/c_form_spinner_with_search_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:c_form/c_form/c_form_colors.dart';
@@ -219,6 +221,47 @@ class CFormField<T> extends StatefulWidget {
       items: items,
       hint: hint,
       validateRegEx: validateRegEx,
+    );
+  }
+
+  CFormField.spinnerWithSearch({
+    Key? key,
+    required String tag,
+    String? title,
+    String? errorMessage,
+    String? helpMessage,
+    Widget? prefixWidget,
+    bool? required,
+    bool? showTitle,
+    CFormFieldStatusEnum? status,
+    String? value,
+    int? weight,
+    RegExp? validateRegEx,
+    List<SpinnerDataModel> items = const [],
+    Future<List<SpinnerDataModel>> Function(String)? asyncItems,
+    String? hint,
+    bool isFilterOnline =
+        true, // TODO - ne peut pas etre true si asyncItems est null???
+    String? searchHint,
+  }) : super(key: key) {
+    model = CFormSpinnerWithSearchModel(
+      type: CFormFieldTypeEnum.spinnerWithSearch,
+      tag: tag,
+      showTitle: showTitle ?? true,
+      title: title,
+      errorMessage: errorMessage,
+      helpMessage: helpMessage,
+      prefixWidget: prefixWidget,
+      required: required,
+      status: status,
+      value: value,
+      weight: weight,
+      items: items,
+      asyncItems: asyncItems,
+      hint: hint,
+      validateRegEx: validateRegEx,
+      isFilterOnline: isFilterOnline,
+      searchHint: searchHint,
     );
   }
 
@@ -976,6 +1019,10 @@ class _CFormFieldState<T> extends State<CFormField<T>> {
       case CFormFieldTypeEnum.spinner:
         widget.child = CFormSpinnerField(
             widget.model as CFormSpinnerModel, widget.formStyle!);
+        break;
+      case CFormFieldTypeEnum.spinnerWithSearch:
+        widget.child = CFormSpinnerWithSearchField(
+            widget.model as CFormSpinnerWithSearchModel, widget.formStyle!);
         break;
       case CFormFieldTypeEnum.radioGroup:
         widget.child = CFormRadioGroupField(

@@ -5,6 +5,7 @@ enum CFormFieldTypeEnum {
   text,
   textPlain,
   spinner,
+  spinnerWithSearch,
   date,
   dateRage,
   time,
