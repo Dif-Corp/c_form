@@ -42,14 +42,15 @@ class _CFormSpinnerFieldState extends State<CFormSpinnerField> {
   @override
   void initState() {
     for (var element in widget.model.items) {
-      if (element.isSelected ?? false) {
+      if (element.isSelected) {
         widget.returnedData = element;
         return;
       }
     }
     if (widget.model.hint != null &&
         widget.model.hint!.isNotEmpty &&
-        widget.hintIndex != widget.model.items[0].id) {
+        widget.hintIndex != widget.model.items[0].id &&
+        widget.returnedData == null) {
       widget.model.items.insert(
         0,
         SpinnerDataModel(
@@ -58,6 +59,11 @@ class _CFormSpinnerFieldState extends State<CFormSpinnerField> {
             data: null,
             isSelected: false),
       );
+      widget.returnedData = widget.model.items.first;
+    }
+
+    if (widget.returnedData == null && widget.model.items.isNotEmpty) {
+      widget.returnedData = widget.model.items.first;
     }
 
     super.initState();

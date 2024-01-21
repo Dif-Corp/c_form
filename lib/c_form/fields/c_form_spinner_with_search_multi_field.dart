@@ -57,6 +57,7 @@ class _CFormSpinnerWithSearchMultiFieldState
         widget.valueObject.add(element);
       }
     }
+    // TODO - Cas du hint.
     // if (widget.model.hint != null &&
     //     widget.model.hint!.isNotEmpty &&
     //     widget.hintIndex != widget.model.items[0].id) {

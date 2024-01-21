@@ -54,18 +54,24 @@ class _CFormSpinnerWithSearchFieldState
         return;
       }
     }
-    // if (widget.model.hint != null &&
-    //     widget.model.hint!.isNotEmpty &&
-    //     widget.hintIndex != widget.model.items[0].id) {
-    //   widget.model.items.insert(
-    //     0,
-    //     SpinnerDataModel(
-    //         name: widget.model.hint!,
-    //         id: widget.hintIndex,
-    //         data: null,
-    //         isSelected: false),
-    //   );
-    // }
+    if (widget.model.hint != null &&
+        widget.model.hint!.isNotEmpty &&
+        widget.hintIndex != widget.model.items[0].id &&
+        widget.returnedData == null) {
+      widget.model.items.insert(
+        0,
+        SpinnerDataModel(
+            name: widget.model.hint!,
+            id: widget.hintIndex,
+            data: null,
+            isSelected: false),
+      );
+      widget.returnedData = widget.model.items.first;
+    }
+
+    if (widget.returnedData == null && widget.model.items.isNotEmpty) {
+      widget.returnedData = widget.model.items.first;
+    }
 
     super.initState();
   }
