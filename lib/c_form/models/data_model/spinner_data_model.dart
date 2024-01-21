@@ -19,4 +19,9 @@ class SpinnerDataModel {
   String toString() {
     return name;
   }
+
+  ///custom comparing function to check if two users are equal
+  bool isEqual(SpinnerDataModel model) {
+    return id == model.id;
+  }
 }

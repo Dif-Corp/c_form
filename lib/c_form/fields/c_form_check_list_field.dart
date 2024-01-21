@@ -32,7 +32,8 @@ class CFormCheckListField extends StatefulWidget implements CFormFieldCallBack {
       if (model.requiredCheckListEnum == RequiredCheckListEnum.atLeastOneItem) {
         return valueObject.isNotEmpty;
       } else {
-        return valueObject.length == model.items.length;
+        return valueObject.length ==
+            model.items.length; // TODO - Sélectionner tout?
       }
     }
   }
@@ -51,6 +52,7 @@ class _CFormCheckListFieldState extends State<CFormCheckListField> {
 
   @override
   Widget build(BuildContext context) {
+    // REVIEW - Use of i
     int i = 0;
     widget.valueObject = [];
     for (var element in widget.model.items) {
