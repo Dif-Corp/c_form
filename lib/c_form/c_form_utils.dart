@@ -1,6 +1,11 @@
 import 'dart:io';
 
 // import 'package:c_form/c_form/enums/image_source.dart';
+import 'package:c_form/c_form/models/data_model/check_data_model.dart';
+import 'package:c_form/c_form/models/data_model/date_data_model.dart';
+import 'package:c_form/c_form/models/data_model/radio_data_model.dart';
+import 'package:c_form/c_form/models/data_model/spinner_data_model.dart';
+import 'package:c_form/c_form/models/data_model/time_data_model.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -258,6 +263,39 @@ class CFormUtils {
 
   static String removeSpaces(String value) {
     return value.replaceAll(RegExp(r'[\s ]+'), '');
+  }
+
+  /// Traite le retour de onSubmit du CForm pour ne plus avoir de value de type xxDataModel
+  static Map<String, dynamic> formSubmitToFullMap(Map<String, dynamic> data) {
+    for (MapEntry e in data.entries) {
+      if (e.value is SpinnerDataModel) {
+        data[e.key] = (e.value as SpinnerDataModel).stringId ??
+            (e.value as SpinnerDataModel).data;
+      }
+      if (e.value is List<SpinnerDataModel>) {
+        data[e.key] = (e.value as List<SpinnerDataModel>)
+            .map((e) => e.stringId ?? e.data)
+            .toList();
+      }
+      if (e.value is RadioDataModel) {
+        data[e.key] = (e.value as RadioDataModel).stringId ??
+            (e.value as RadioDataModel).data;
+      }
+      if (e.value is CheckDataModel) {
+        data[e.key] = (e.value as CheckDataModel).data;
+      }
+      if (e.value is List<CheckDataModel>) {
+        data[e.key] =
+            (e.value as List<CheckDataModel>).map((e) => e.data).toList();
+      }
+      if (e.value is DateDataModel) {
+        data[e.key] = (e.value as DateDataModel).dateServerType;
+      }
+      if (e.value is TimeDataModel) {
+        data[e.key] = (e.value as TimeDataModel).displayTime; // REVIEW
+      }
+    }
+    return data;
   }
 }
 
