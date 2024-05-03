@@ -662,7 +662,7 @@ class CFormField<T> extends StatefulWidget {
       isPastAvailable: isPastAvailable,
       dateFormatType: displayDateType,
       initialDate: initialDate,
-      availableFrom: availableTo,
+      availableFrom: availableFrom,
       availableTo: availableTo,
     );
   }
@@ -713,7 +713,7 @@ class CFormField<T> extends StatefulWidget {
       dateFormatType: displayDateType,
       initialStartDate: initialStartDate,
       initialEndDate: initialEndDate,
-      availableFrom: availableTo,
+      availableFrom: availableFrom,
       availableTo: availableTo,
       calendarType: calendarType,
       validateReg: validateReg,
