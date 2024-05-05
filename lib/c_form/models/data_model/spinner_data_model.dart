@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 class SpinnerDataModel {
   String name;
   int id;
@@ -6,6 +8,7 @@ class SpinnerDataModel {
   String? stringId;
   bool isSelected;
   dynamic data;
+  Widget? leading;
 
   SpinnerDataModel({
     required this.name,
@@ -13,6 +16,7 @@ class SpinnerDataModel {
     bool? isSelected,
     this.data,
     this.stringId,
+    this.leading,
   }) : isSelected = isSelected ?? false;
 
   @override
@@ -20,7 +24,7 @@ class SpinnerDataModel {
     return name;
   }
 
-  ///custom comparing function to check if two users are equal
+  ///custom comparing function to check if two instances are equal
   bool isEqual(SpinnerDataModel model) {
     return id == model.id;
   }

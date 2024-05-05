@@ -16,7 +16,7 @@ class CFormSpinnerWithSearchField extends StatefulWidget
   CFormSpinnerWithSearchModel model;
   CFormStyle formStyle;
   SpinnerDataModel? returnedData;
-  SpinnerDataModel? defaultValue;
+  SpinnerDataModel? defaultValue; // REVIEW -
 
   CFormSpinnerWithSearchField(this.model, this.formStyle, {Key? key})
       : super(key: key);
@@ -46,6 +46,8 @@ class CFormSpinnerWithSearchField extends StatefulWidget
 
 class _CFormSpinnerWithSearchFieldState
     extends State<CFormSpinnerWithSearchField> {
+  DropDownDecoratorProps? dropdownDecoratorProps;
+
   @override
   void initState() {
     for (var element in widget.model.items) {
@@ -73,6 +75,8 @@ class _CFormSpinnerWithSearchFieldState
       widget.returnedData = widget.model.items.first;
     }
 
+    dropdownDecoratorProps = _getDropDownDecoratorProps();
+
     super.initState();
   }
 
@@ -82,7 +86,7 @@ class _CFormSpinnerWithSearchFieldState
       children: [
         Expanded(
           child: DropdownSearch<SpinnerDataModel>(
-            compareFn: (item1, item2) => item1.id == item2.id,
+            compareFn: (item1, item2) => item1.name == item2.name,
             enabled: widget.model.status != CFormFieldStatusEnum.disabled,
             clearButtonProps: ClearButtonProps(
               isVisible: widget.model.required != true,
@@ -102,20 +106,17 @@ class _CFormSpinnerWithSearchFieldState
                 ),
               ),
               // disabledItemFn: (SpinnerDataModel s) => s.name.startsWith('I'),
-            ),
-            dropdownDecoratorProps: DropDownDecoratorProps(
-              baseStyle: widget.formStyle.fieldTextStyle,
-              dropdownSearchDecoration: InputDecoration(
-                // labelText: "Menu mode",
-                hintText:
-                    widget.model.hint != null && widget.model.hint!.isNotEmpty
-                        ? widget.model.hint
-                        : null,
-                hintStyle: widget.formStyle.fieldHintStyle,
-                border: InputBorder.none,
-                contentPadding: const EdgeInsets.fromLTRB(8.0, 12, 0, 0),
+              interceptCallBacks: false,
+              itemBuilder: (context, item, isSelected) => ListTile(
+                // enabled: !_isDisabled(item),
+                leading: item.leading,
+                title: Text(item.name),
+                selected: item.isSelected,
+                // onTap: _isDisabled(item) ? null : () => _handleSelectedItem(item), // NOTE - Sera gérépar le drop....
               ),
             ),
+            dropdownDecoratorProps:
+                dropdownDecoratorProps ?? _getDropDownDecoratorProps(),
             // isExpanded: true,
             selectedItem: widget.returnedData ??
                 (widget.model.items.isNotEmpty
@@ -130,9 +131,44 @@ class _CFormSpinnerWithSearchFieldState
                 });
               }
             },
+            //
+            dropdownBuilder: (context, selectedItem) => Row(
+              children: [
+                if (selectedItem?.leading != null)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: selectedItem!.leading!,
+                  ),
+                Flexible(
+                  child: Text(
+                    selectedItem?.name ?? '',
+                    style: selectedItem?.id == widget.hintIndex
+                        ? widget.formStyle.fieldHintStyle
+                        : widget.formStyle.fieldTextStyle,
+                    // style: dropdownDecoratorProps?.baseStyle,
+                    textAlign: dropdownDecoratorProps?.textAlign,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],
+    );
+  }
+
+  DropDownDecoratorProps _getDropDownDecoratorProps() {
+    return DropDownDecoratorProps(
+      baseStyle: widget.formStyle.fieldTextStyle,
+      dropdownSearchDecoration: InputDecoration(
+        // labelText: "Menu mode",
+        hintText: widget.model.hint != null && widget.model.hint!.isNotEmpty
+            ? widget.model.hint
+            : null,
+        hintStyle: widget.formStyle.fieldHintStyle,
+        border: InputBorder.none,
+        contentPadding: const EdgeInsets.fromLTRB(8.0, 12, 0, 0),
+      ),
     );
   }
 }

@@ -12,7 +12,7 @@ class CFormSpinnerField extends StatefulWidget implements CFormFieldCallBack {
   CFormSpinnerModel model;
   CFormStyle formStyle;
   SpinnerDataModel? returnedData;
-  SpinnerDataModel? defaultValue;
+  SpinnerDataModel? defaultValue; // REVIEW -
 
   CFormSpinnerField(this.model, this.formStyle, {Key? key}) : super(key: key);
 
@@ -91,11 +91,19 @@ class _CFormSpinnerFieldState extends State<CFormSpinnerField> {
                     value: e,
                     child: Padding(
                       padding: const EdgeInsetsDirectional.only(start: 8.0),
-                      child: Text(
-                        e.name,
-                        style: e.id == widget.hintIndex
-                            ? widget.formStyle.fieldHintStyle
-                            : widget.formStyle.fieldTextStyle,
+                      child: Row(
+                        children: [
+                          if (widget.returnedData?.leading != null)
+                            widget.returnedData!.leading!,
+                          Flexible(
+                            child: Text(
+                              e.name,
+                              style: e.id == widget.hintIndex
+                                  ? widget.formStyle.fieldHintStyle
+                                  : widget.formStyle.fieldTextStyle,
+                            ),
+                          ),
+                        ],
                       ),
                     )))
                 .toList(),
