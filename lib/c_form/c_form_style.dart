@@ -48,7 +48,9 @@ class CFormStyle {
         sectionCardPadding = sectionCardPadding ?? 2.0,
         requiredText = requiredText ?? '',
         fieldHintStyle =
-            fieldHintStyle ?? CFormTheme.textThemeStyle.displayMedium!,
+            fieldHintStyle?.copyWith(fontStyle: FontStyle.italic) ??
+                CFormTheme.textThemeStyle.displaySmall!
+                    .copyWith(fontStyle: FontStyle.italic),
         fieldTextStyle =
             fieldTextStyle ?? CFormTheme.textThemeStyle.displayMedium!,
         errorTextStyle =
@@ -66,7 +68,8 @@ class CFormStyle {
     sectionCardPadding: 0.0,
     titleStyle: CFormTheme.textThemeStyle.displayMedium,
     fieldTextStyle: CFormTheme.textThemeStyle.displayMedium,
-    fieldHintStyle: CFormTheme.textThemeStyle.displaySmall,
+    fieldHintStyle: CFormTheme.textThemeStyle.displaySmall
+        ?.copyWith(fontStyle: FontStyle.italic),
     errorTextStyle: CFormTheme.textThemeStyle.headlineSmall,
     helpTextStyle: CFormTheme.textThemeStyle.headlineMedium,
     sectionTitleStyle: CFormTheme.textThemeStyle.displayLarge,
@@ -85,7 +88,8 @@ class CFormStyle {
     sectionTitleStyle: CFormTheme.textThemeDarkStyle.displayLarge,
     titleStyle: CFormTheme.textThemeDarkStyle.displayMedium,
     fieldTextStyle: CFormTheme.textThemeDarkStyle.displayMedium,
-    fieldHintStyle: CFormTheme.textThemeDarkStyle.displaySmall,
+    fieldHintStyle: CFormTheme.textThemeDarkStyle.displaySmall
+        ?.copyWith(fontStyle: FontStyle.italic),
     errorTextStyle: CFormTheme.textThemeDarkStyle.headlineSmall,
     helpTextStyle: CFormTheme.textThemeDarkStyle.headlineMedium,
     sectionRadius: 8,
@@ -102,7 +106,8 @@ class CFormStyle {
     sectionCardPadding: 8.0,
     titleStyle: CFormTheme.textThemeStyle.displayMedium,
     fieldTextStyle: CFormTheme.textThemeStyle.displayMedium,
-    fieldHintStyle: CFormTheme.textThemeStyle.displaySmall,
+    fieldHintStyle: CFormTheme.textThemeStyle.displaySmall
+        ?.copyWith(fontStyle: FontStyle.italic),
     errorTextStyle: CFormTheme.textThemeStyle.headlineSmall,
     helpTextStyle: CFormTheme.textThemeStyle.headlineMedium,
     sectionTitleStyle: CFormTheme.textThemeStyle.displayLarge,
@@ -118,7 +123,8 @@ class CFormStyle {
     backgroundSectionColor: CFormColors.black,
     titleStyle: CFormTheme.textThemeDarkStyle.displayMedium,
     fieldTextStyle: CFormTheme.textThemeDarkStyle.displayMedium,
-    fieldHintStyle: CFormTheme.textThemeDarkStyle.displaySmall,
+    fieldHintStyle: CFormTheme.textThemeDarkStyle.displaySmall
+        ?.copyWith(fontStyle: FontStyle.italic),
     errorTextStyle: CFormTheme.textThemeDarkStyle.headlineSmall,
     helpTextStyle: CFormTheme.textThemeDarkStyle.headlineMedium,
     sectionTitleStyle: CFormTheme.textThemeDarkStyle.displayLarge,
