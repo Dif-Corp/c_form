@@ -74,6 +74,7 @@ class CForm extends StatelessWidget {
   Map<String, dynamic> onSubmit() {
     Map<String, dynamic> data = {};
     for (var section in sections) {
+      data.addAll(section.additionalData);
       for (var filed in section.fields) {
         if (filed is CFormField) {
           data[filed.model.tag] =

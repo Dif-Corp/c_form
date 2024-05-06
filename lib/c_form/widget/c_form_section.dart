@@ -11,8 +11,16 @@ class CFormSection extends StatelessWidget {
   CFormStyle? style;
   String? sectionTitle;
 
+  /// Les valeurs aditionnelles qui seront ajoutée dans les valeurs retournées
+  /// par les champs.
+  Map<String, dynamic> additionalData;
+
   CFormSection(
-      {Key? key, required this.fields, this.style, required this.sectionTitle})
+      {Key? key,
+      required this.fields,
+      this.style,
+      required this.sectionTitle,
+      this.additionalData = const {}})
       : super(key: key);
 
   @override
