@@ -406,8 +406,10 @@ class MultiSectionForm extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       items: [
-                        RadioDataModel(title: 'lorem', isSelected: false),
-                        RadioDataModel(title: 'ipsum', isSelected: false),
+                        RadioDataModel(
+                            id: 0, title: 'lorem', isSelected: false),
+                        RadioDataModel(
+                            id: 1, title: 'ipsum', isSelected: false),
                       ],
                       callBack: (data) {},
                     ),
