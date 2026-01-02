@@ -1,4 +1,4 @@
-group 'com.difcorp.library.c_form.c_form'
+group 'com.difcorporation.library.c_form.c_form'
 version '1.0-SNAPSHOT'
 
 buildscript {

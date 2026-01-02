@@ -1,4 +1,4 @@
-package com.difcorp.library.c_form.c_form
+package com.difcorporation.library.c_form.c_form
 
 import androidx.annotation.NonNull
 

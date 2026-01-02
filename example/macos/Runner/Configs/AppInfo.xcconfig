@@ -8,7 +8,7 @@
 PRODUCT_NAME = c_form_example
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.difcorp.library.cform.cFormExample
+PRODUCT_BUNDLE_IDENTIFIER = com.difcorporation.library.cform.cFormExample
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2023 com.difcorp.library.c_form. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2023 com.difcorporation.library.c_form. All rights reserved.
