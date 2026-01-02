@@ -1,6 +1,6 @@
 name: c_form
 description: A new Flutter plugin CForm.
-version: "2.0.0-pre.1"
+version: "1.0.0-pre.1"
 homepage: https://github.com/Dif-Corp/c_form.git
 
 environment:
