@@ -4,23 +4,23 @@ version: 1.0.0
 homepage: https://github.com/Dif-Corp/c_form.git
 
 environment:
-  sdk: '>=2.18.6 <3.0.0'
+  sdk: ^3.9.2
   flutter: ">=2.5.0"
 
 dependencies:
-  dropdown_search: ^5.0.6
-  figma_squircle: ^0.5.3
+  dropdown_search: ^6.0.2
+  figma_squircle: ^0.6.3
   flutter:
     sdk: flutter
   flutter_svg: ^2.0.9
   flutter_web_plugins:
     sdk: flutter
   get: ^4.6.5
-  image_cropper: ^5.0.1
+  image_cropper: ^11.0.0
   image_picker: ^1.0.5
-  intl: ^0.18.1
+  intl: ^0.20.2
   path_provider: ^2.1.1
-  persian_datetime_picker: ^2.6.0
+  persian_datetime_picker: ^3.2.0
   plugin_platform_interface: ^2.1.7
   qr_code_scanner: ^1.0.1
   # wechat_assets_picker: ^8.6.3
@@ -29,7 +29,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^6.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

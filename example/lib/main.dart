@@ -66,12 +66,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
         primaryColor: Colors.blue,
-        backgroundColor: const Color(0xfff5f5f5),
+        // backgroundColor: const Color(0xfff5f5f5),
         textTheme: null,
       ),
       darkTheme: ThemeData(
-          brightness: Brightness.dark,
-          backgroundColor: const Color(0xff3c3c3c)),
+        brightness: Brightness.dark,
+        // backgroundColor: const Color(0xff3c3c3c),
+      ),
       home: MainTestPage(),
     );
   }
