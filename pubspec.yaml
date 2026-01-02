@@ -68,7 +68,7 @@ flutter:
     - packages/c_form/assets/ic_alret.svg
     - packages/c_form/assets/ic_info.svg
     - packages/c_form/assets/ic_trash.svg
-  #
+    - assets/icons/
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages
   #
